@@ -38,7 +38,7 @@ module FlickrTags
       json = Net::HTTP.get(URI.parse(url))
       result = ActiveSupport::JSON.decode(json)
       photos = result['photos']['photo']
-      output += photos.randomize.inspect.to_s
+      # output += photos.randomize.inspect.to_s
       # output += photos.shuffle.inspect
       unless photos.empty?
         # photos.randomize! if random
@@ -47,12 +47,12 @@ module FlickrTags
         output += '<ul>'
         photos[0..total-1].each do |photo|
           thumb = "http://farm#{photo['farm']}.static.flickr.com/#{photo['server']}/#{photo['id']}_#{photo['secret']}_s.jpg"
-          output += %{<li><a href="http://flickr.com/photos/cannikin/#{photo['id']}"><img src="#{thumb}" alt="#{photo['title']}" /></a></li>}
+          output += %{<li><a href="http://farm#{photo['farm']}.static.flickr.com/#{photo['server']}/#{photo['id']}_#{photo['secret']}.jpg?v=0"><img src="#{thumb}" alt="#{photo['title']}" /></a></li>}
         end
         output += '</ul>'
       end
     rescue
-      # any problems with request just output nothing
+      p result
     end
     
     output

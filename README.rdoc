@@ -34,7 +34,7 @@ Once you have that ID you can, for example, search only your own photos that are
 
 See http://flickr.com/services/api/flickr.photos.search.html for a full list of attributes you can pass to the tag. All API arguments are available, just use the ones you want as attributes in your tag. 
 
-All attributes are optional except for +api_key+.
+All attributes are optional except for +api_key+. There must be at least a search field or user_id, or Flickr will warn that method=flickr.photos.getRecent should be used instead.
 
 Enjoy!
 
