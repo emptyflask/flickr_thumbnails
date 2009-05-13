@@ -27,8 +27,8 @@ module FlickrTags
   
   
   def add_photos(photos)
-    # p photos
     output = ''
+    photoset_id = photos['photoset']['id']
     photos = photos['photoset']['photo']
 
     unless photos.empty?
@@ -36,7 +36,7 @@ module FlickrTags
 
       photos[0..photos.size-1].each do |photo|
         thumb = "http://farm#{photo['farm']}.static.flickr.com/#{photo['server']}/#{photo['id']}_#{photo['secret']}_s.jpg"
-        output += %{<li><a href="http://farm#{photo['farm']}.static.flickr.com/#{photo['server']}/#{photo['id']}_#{photo['secret']}.jpg?v=0" class="thickbox" rel=""><img src="#{thumb}" alt="#{photo['title']}" /></a></li>}
+        output += %{<li><a href="http://farm#{photo['farm']}.static.flickr.com/#{photo['server']}/#{photo['id']}_#{photo['secret']}.jpg?v=0" class="thickbox" rel="#{photoset_id}"><img src="#{thumb}" alt="#{photo['title']}" /></a></li>}
       end
 
       output += '</ul>'
