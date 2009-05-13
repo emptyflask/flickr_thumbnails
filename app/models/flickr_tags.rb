@@ -27,7 +27,7 @@ module FlickrTags
   
   
   def add_photos(photos)
-    p photos
+    # p photos
     output = ''
     photos = photos['photoset']['photo']
 
@@ -62,7 +62,7 @@ module FlickrTags
       end
             
     rescue
-      puts "Something broke!"
+      $stderror.puts "Something broke!"
     end
     
     output
